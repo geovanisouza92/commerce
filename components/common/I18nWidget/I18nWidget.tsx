@@ -28,6 +28,13 @@ const LOCALES_MAP: Record<string, LOCALE_DATA> = {
       alt: 'US Flag',
     },
   },
+  'pt-BR': {
+    name: 'Português',
+    img: {
+      filename: 'flag-pt-br.svg',
+      alt: 'Bandeira do Brasil',
+    },
+  },
 }
 
 const I18nWidget: FC = () => {
@@ -35,7 +42,7 @@ const I18nWidget: FC = () => {
   const {
     locale,
     locales,
-    defaultLocale = 'en-US',
+    defaultLocale = process.env.DEFAULT_LOCALE,
     asPath: currentPath,
   } = useRouter()
 
@@ -50,12 +57,13 @@ const I18nWidget: FC = () => {
           onClick={() => setDisplay(!display)}
         >
           <button className={s.button} aria-label="Language selector">
+            {/* eslint-disable-next-line @next/next/no-img-element  */}
             <img
               width="20"
               height="20"
               className="block mr-2 w-5"
-              src={`/${LOCALES_MAP[currentLocale].img.filename}`}
-              alt={LOCALES_MAP[currentLocale].img.alt}
+              src={`/${LOCALES_MAP[currentLocale!].img.filename}`}
+              alt={LOCALES_MAP[currentLocale!].img.alt}
             />
             {options && (
               <span className="cursor-pointer">

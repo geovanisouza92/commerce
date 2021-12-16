@@ -14,7 +14,7 @@ import { handler as useSignup } from './auth/use-signup'
 import fetcher from './fetcher'
 
 export const saleorProvider = {
-  locale: 'en-us',
+  locale: process.env.DEFAULT_LOCALE || 'en-US',
   cartCookie: CHECKOUT_ID_COOKIE,
   fetcher,
   cart: { useCart, useAddItem, useUpdateItem, useRemoveItem },

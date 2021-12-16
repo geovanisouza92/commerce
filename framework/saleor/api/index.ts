@@ -17,7 +17,7 @@ export interface SaleorConfig extends CommerceAPIConfig {
 }
 
 const config: SaleorConfig = {
-  locale: 'en-US',
+  locale: process.env.DEFAULT_LOCALE || 'en-US',
   commerceUrl: Const.API_URL,
   apiToken: Const.SALEOR_TOKEN,
   cartCookie: Const.CHECKOUT_ID_COOKIE,

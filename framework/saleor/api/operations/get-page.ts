@@ -19,7 +19,7 @@ export default function getPageOperation({ commerce }: OperationContext<Provider
     config?: Partial<SaleorConfig>
     preview?: boolean
   }): Promise<GetPageResult> {
-    const { fetch, locale = 'en-US' } = commerce.getConfig(config)
+    const { fetch, locale = process.env.DEFAULT_LOCALE || 'en-US' } = commerce.getConfig(config)
 
     const {
       data: { page },

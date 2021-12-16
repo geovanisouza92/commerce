@@ -20,7 +20,7 @@ export default function getAllPagesOperation({ commerce }: OperationContext<Prov
     preview?: boolean
     query?: string
   } = {}): Promise<GetAllPagesResult> {
-    const { fetch, locale, locales = ['en-US'] } = commerce.getConfig(config)
+    const { fetch, locale, locales = [process.env.DEFAULT_LOCALE || 'en-US'] } = commerce.getConfig(config)
 
     const { data } = await fetch(
       query,
