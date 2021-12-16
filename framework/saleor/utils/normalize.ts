@@ -109,6 +109,11 @@ export function normalizeCart(checkout: Checkout): Cart {
 }
 
 function normalizeLineItem({ id, variant, quantity }: CheckoutLine): LineItem {
+  const imageUrl = variant?.media![0]
+    ? variant?.media![0].url
+    : variant?.product.thumbnail
+    ? variant?.product.thumbnail.url
+    : placeholderImg;
   return {
     id,
     variantId: String(variant?.id),
@@ -120,7 +125,7 @@ function normalizeLineItem({ id, variant, quantity }: CheckoutLine): LineItem {
       sku: variant?.sku ?? '',
       name: variant?.name!,
       image: {
-        url: variant?.media![0] ? variant?.media![0].url : placeholderImg,
+        url: imageUrl,
       },
       requiresShipping: false,
       price: variant?.pricing?.price?.gross.amount!,

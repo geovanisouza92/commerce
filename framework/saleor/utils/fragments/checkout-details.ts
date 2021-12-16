@@ -25,6 +25,9 @@ export const CheckoutDetails = /* GraphQL */ `
         product {
           name
           slug
+          thumbnail(size: 150) {
+            url
+          }
         }
         media {
           url
