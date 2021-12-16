@@ -7,6 +7,7 @@ import { normalizeProduct } from '../../utils'
 
 import * as Query from '../../utils/queries'
 import { GraphQLFetcherResult } from '@commerce/api'
+import * as consts from '@framework/const'
 
 type ReturnType = {
   products: Product[]
@@ -28,7 +29,7 @@ export default function getAllProductsOperation({ commerce }: OperationContext<P
     const { fetch, locale } = commerce.getConfig(config)
 
     if (featured) {
-      variables = { ...variables, categoryId: 'Q29sbGVjdGlvbjo0' }
+      variables = { ...variables, categoryId: consts.FEATURED_COLLECTION_ID }
       query = Query.CollectionOne
     }
 
