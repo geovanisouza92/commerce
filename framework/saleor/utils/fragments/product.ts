@@ -15,6 +15,7 @@ export const ProductConnection = /* GraphQL */ `
             start {
               net {
                 amount
+                currency
               }
             }
           }
