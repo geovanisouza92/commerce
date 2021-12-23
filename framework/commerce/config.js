@@ -8,29 +8,11 @@ const merge = require('deepmerge')
 const prettier = require('prettier')
 
 const PROVIDERS = [
-  'local',
-  'bigcommerce',
   'saleor',
-  'shopify',
-  'swell',
-  'vendure',
-  'ordercloud',
-  'kibocommerce',
-  'spree',
-  'commercejs',
 ]
 
 function getProviderName() {
-  return (
-    process.env.COMMERCE_PROVIDER ||
-    (process.env.BIGCOMMERCE_STOREFRONT_API_URL
-      ? 'bigcommerce'
-      : process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN
-      ? 'shopify'
-      : process.env.NEXT_PUBLIC_SWELL_STORE_ID
-      ? 'swell'
-      : 'local')
-  )
+  return process.env.COMMERCE_PROVIDER || 'saleor'
 }
 
 function withCommerceConfig(nextConfig = {}) {
