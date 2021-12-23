@@ -1,7 +1,6 @@
 import type { GetStaticPropsContext } from 'next'
 import commerce from '@lib/api/commerce'
 import { Heart } from '@components/icons'
-import { Layout } from '@components/common'
 import { Text, Container, Skeleton } from '@components/ui'
 import { useCustomer } from '@framework/customer'
 import { WishlistCard } from '@components/wishlist'
@@ -81,5 +80,3 @@ export default function Wishlist() {
     </Container>
   )
 }
-
-Wishlist.Layout = Layout

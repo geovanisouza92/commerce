@@ -1,5 +1,4 @@
 import commerce from '@lib/api/commerce'
-import { Layout } from '@components/common'
 import { ProductCard } from '@components/product'
 import { Grid, Marquee, Hero } from '@components/ui'
 // import HomeAllProductsGrid from '@components/common/HomeAllProductsGrid'
@@ -89,5 +88,3 @@ export default function Home({
     </>
   )
 }
-
-Home.Layout = Layout

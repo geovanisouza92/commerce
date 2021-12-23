@@ -5,7 +5,6 @@ import type {
 } from 'next'
 import { useRouter } from 'next/router'
 import commerce from '@lib/api/commerce'
-import { Layout } from '@components/common'
 import { ProductView } from '@components/product'
 
 export async function getStaticProps({
@@ -79,5 +78,3 @@ export default function Slug({
     <ProductView product={product} relatedProducts={relatedProducts} />
   )
 }
-
-Slug.Layout = Layout

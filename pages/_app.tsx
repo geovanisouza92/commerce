@@ -4,13 +4,15 @@ import 'keen-slider/keen-slider.min.css'
 
 import { FC, useEffect } from 'react'
 import type { AppProps } from 'next/app'
-import { Head } from '@components/common'
+import { useRouter } from 'next/router'
+import { CommerceProvider } from '@framework'
+import { Head, Layout } from '@components/common'
 import { ManagedUIContext } from '@components/ui/context'
 
 const Noop: FC = ({ children }) => <>{children}</>
 
 export default function MyApp({ Component, pageProps }: AppProps) {
-  const Layout = (Component as any).Layout || Noop
+  const { locale = 'en-US' } = useRouter()
 
   useEffect(() => {
     document.body.classList?.remove('loading')
@@ -20,9 +22,11 @@ export default function MyApp({ Component, pageProps }: AppProps) {
     <>
       <Head />
       <ManagedUIContext>
-        <Layout pageProps={pageProps}>
-          <Component {...pageProps} />
-        </Layout>
+        <CommerceProvider locale={locale}>
+          <Layout pageProps={pageProps}>
+            <Component {...pageProps} />
+          </Layout>
+        </CommerceProvider>
       </ManagedUIContext>
     </>
   )
