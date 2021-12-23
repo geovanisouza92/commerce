@@ -8,10 +8,13 @@ export async function getSearchStaticProps({
   locales,
 }: GetStaticPropsContext) {
   const config = { locale, locales }
-  const pagesPromise = commerce.getAllPages({ config, preview })
-  const siteInfoPromise = commerce.getSiteInfo({ config, preview })
-  const { pages } = await pagesPromise
-  const { categories, brands } = await siteInfoPromise
+  const [
+    { pages },
+    { categories, brands },
+  ] = await Promise.all([
+    commerce.getAllPages({ config, preview }),
+    commerce.getSiteInfo({ config, preview }),
+  ])
   return {
     props: {
       pages,

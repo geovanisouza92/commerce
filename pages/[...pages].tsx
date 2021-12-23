@@ -18,22 +18,23 @@ export async function getStaticProps({
   locales,
 }: GetStaticPropsContext<{ pages: string[] }>) {
   const config = { locale, locales }
-  const pagesPromise = commerce.getAllPages({ config, preview })
-  const siteInfoPromise = commerce.getSiteInfo({ config, preview })
-  const { pages } = await pagesPromise
-  const { categories } = await siteInfoPromise
+  const [
+    { pages },
+    { categories },
+  ] = await Promise.all([
+    commerce.getAllPages({ config, preview }),
+    commerce.getSiteInfo({ config, preview }),
+  ])
   const path = params?.pages.join('/')
   const slug = locale ? `${locale}/${path}` : path
   const pageItem = pages.find((p: Page) =>
     p.url ? getSlug(p.url) === slug : false
   )
-  const data =
-    pageItem &&
-    (await commerce.getPage({
-      variables: { id: pageItem.id! },
-      config,
-      preview,
-    }))
+  const data = pageItem && (await commerce.getPage({
+    variables: { id: pageItem.id! },
+    config,
+    preview,
+  }))
 
   const page = data?.page
 

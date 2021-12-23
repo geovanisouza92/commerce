@@ -9,8 +9,13 @@ export async function getStaticProps({
   locales,
 }: GetStaticPropsContext) {
   const config = { locale, locales }
-  const { pages } = await commerce.getAllPages({ config, preview })
-  const { categories, brands } = await commerce.getSiteInfo({ config, preview })
+  const [
+    { pages },
+    { categories, brands },
+  ] = await Promise.all([
+    commerce.getAllPages({ config, preview }),
+    commerce.getSiteInfo({ config, preview }),
+  ])
   return {
     props: {
       pages,
