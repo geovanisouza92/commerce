@@ -5,4 +5,12 @@ module.exports = {
   images: {
     domains: [process.env.COMMERCE_IMAGE_HOST],
   },
+  rewrites() {
+    return [
+      {
+        source: '/checkout',
+        destination: '/api/checkout',
+      },
+    ]
+  },
 }

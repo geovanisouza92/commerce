@@ -1,25 +1,11 @@
 const commerce = require('./commerce.config.json')
-const {
-  withCommerceConfig,
-  getProviderName,
-} = require('./framework/commerce/config')
-
-const provider = commerce.provider || getProviderName()
-const isSaleor = provider === 'saleor'
+const { withCommerceConfig } = require('./framework/commerce/config')
 
 module.exports = withCommerceConfig({
   commerce,
   i18n: {
     locales: ['en-US', 'es'],
     defaultLocale: 'en-US',
-  },
-  rewrites() {
-    return [
-      isSaleor && {
-        source: '/checkout',
-        destination: '/api/checkout',
-      },
-    ].filter(Boolean)
   },
 })
 
