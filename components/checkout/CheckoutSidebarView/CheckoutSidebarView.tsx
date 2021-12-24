@@ -1,4 +1,6 @@
 import Link from 'next/link'
+import { useRouter } from 'next/router'
+import Script from 'next/script'
 import { FC, useState } from 'react'
 import CartItem from '@components/cart/CartItem'
 import { Button, Text } from '@components/ui'
@@ -8,7 +10,7 @@ import useCart from '@framework/cart/use-cart'
 import usePrice from '@framework/product/use-price'
 import useCheckout from '@framework/checkout/use-checkout'
 import ShippingWidget from '../ShippingWidget'
-import PaymentWidget from '../PaymentWidget'
+// import PaymentWidget from '../PaymentWidget'
 import s from './CheckoutSidebarView.module.css'
 import { useCheckoutContext } from '../context'
 
@@ -18,6 +20,14 @@ const CheckoutSidebarView: FC = () => {
   const { data: cartData, revalidate: refreshCart } = useCart()
   const { data: checkoutData, submit: onCheckout } = useCheckout()
   const { clearCheckoutFields } = useCheckoutContext()
+  const [mp, setMp] = useState()
+  const { locale } = useRouter()
+
+  function handleLoad() {
+    setMp(new window.MercadoPago(process.env.MP_PUBLIC_KEY, {
+      locale,
+    }))
+  }
 
   async function handleSubmit(event: React.ChangeEvent<HTMLFormElement>) {
     try {
@@ -60,10 +70,12 @@ const CheckoutSidebarView: FC = () => {
           </a>
         </Link>
 
+        {/*
         <PaymentWidget
           isValid={checkoutData?.hasPayment}
           onClick={() => setSidebarView('PAYMENT_VIEW')}
         />
+        */}
         <ShippingWidget
           isValid={checkoutData?.hasShipping}
           onClick={() => setSidebarView('SHIPPING_VIEW')}
@@ -108,15 +120,20 @@ const CheckoutSidebarView: FC = () => {
           <Button
             type="submit"
             width="100%"
-            disabled={!checkoutData?.hasPayment || !checkoutData?.hasShipping}
+            disabled={/* !checkoutData?.hasPayment || */ !checkoutData?.hasShipping}
             loading={loadingSubmit}
           >
             Confirm Purchase
           </Button>
         </div>
       </form>
+      <Script src="https://sdk.mercadopago.com/js/v2" onLoad={handleLoad} />
     </SidebarLayout>
   )
 }
 
 export default CheckoutSidebarView
+
+declare global {
+  var MercadoPago: any
+}

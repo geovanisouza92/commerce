@@ -3,11 +3,12 @@ import type { MutationHook } from '@commerce/utils/types'
 import { CommerceError } from '@commerce/utils/errors'
 import useSignup, { UseSignup } from '@commerce/auth/use-signup'
 import useCustomer from '../customer/use-customer'
-import { AccountRegisterInput, Mutation, MutationAccountRegisterArgs } from '../schema'
+import { Mutation, MutationAccountRegisterArgs } from '../schema'
 
 import * as mutation from '../utils/mutations'
 import { handleAutomaticLogin, throwUserErrors } from '../utils'
 import { SignupHook } from '@commerce/types/signup'
+import * as consts from '../const'
 
 export default useSignup as UseSignup<typeof handler>
 
@@ -28,7 +29,7 @@ export const handler: MutationHook<SignupHook> = {
         input: {
           email,
           password,
-          redirectUrl: 'https://localhost.com',
+          redirectUrl: consts.DOMAIN_NAME,
           channel: 'default-channel',
         },
       },

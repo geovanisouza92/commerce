@@ -42,6 +42,16 @@ export default function Cart() {
     }
   )
 
+  const goToShipment = () => {
+    openSidebar()
+    setSidebarView('SHIPPING_VIEW')
+  }
+
+  const goToPayment = () => {
+    openSidebar()
+    setSidebarView('PAYMENT_VIEW')
+  }
+
   const goToCheckout = () => {
     openSidebar()
     setSidebarView('CHECKOUT_VIEW')
@@ -117,7 +127,7 @@ export default function Cart() {
             <>
               {/* Shipping Address */}
               {/* Only available with customCheckout set to true - Meaning that the provider does offer checkout functionality. */}
-              <div className="rounded-md border border-accent-2 px-6 py-6 mb-4 text-center flex items-center justify-center cursor-pointer hover:border-accent-4">
+              <div onClick={goToShipment} role="button" className="rounded-md border border-accent-2 px-6 py-6 mb-4 text-center flex items-center justify-center cursor-pointer hover:border-accent-4">
                 <div className="mr-5">
                   <MapPin />
                 </div>
@@ -131,7 +141,7 @@ export default function Cart() {
               </div>
               {/* Payment Method */}
               {/* Only available with customCheckout set to true - Meaning that the provider does offer checkout functionality. */}
-              <div className="rounded-md border border-accent-2 px-6 py-6 mb-4 text-center flex items-center justify-center cursor-pointer hover:border-accent-4">
+              <div onClick={goToPayment} role="button" className="rounded-md border border-accent-2 px-6 py-6 mb-4 text-center flex items-center justify-center cursor-pointer hover:border-accent-4">
                 <div className="mr-5">
                   <CreditCard />
                 </div>

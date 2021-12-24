@@ -30,7 +30,7 @@ const ShippingView: FC = () => {
     event.preventDefault()
 
     await addAddress({
-      type: event.target.type.value,
+      // type: event.target.type.value,
       firstName: event.target.firstName.value,
       lastName: event.target.lastName.value,
       company: event.target.company.value,
@@ -52,6 +52,7 @@ const ShippingView: FC = () => {
             Shipping
           </h2>
           <div>
+            {/*
             <div className="flex flex-row my-3 items-center">
               <input name="type" className={s.radio} type="radio" />
               <span className="ml-3 text-sm">Same as billing address</span>
@@ -62,6 +63,7 @@ const ShippingView: FC = () => {
                 Use a different shipping address
               </span>
             </div>
+            */}
             <hr className="border-accent-2 my-6" />
             <div className="grid gap-3 grid-flow-row grid-cols-12">
               <div className={cn(s.fieldset, 'col-span-6')}>
@@ -73,10 +75,12 @@ const ShippingView: FC = () => {
                 <input name="lastName" className={s.input} />
               </div>
             </div>
+            {/*
             <div className={s.fieldset}>
               <label className={s.label}>Company (Optional)</label>
               <input name="company" className={s.input} />
             </div>
+            */}
             <div className={s.fieldset}>
               <label className={s.label}>Street and House Number</label>
               <input name="streetNumber" className={s.input} />
@@ -104,6 +108,7 @@ const ShippingView: FC = () => {
               </select>
             </div>
           </div>
+          {/* TODO Freight options/select */}
         </div>
         <div className="sticky z-20 bottom-0 w-full right-0 left-0 py-12 bg-accent-0 border-t border-accent-2 px-6">
           <Button type="submit" width="100%" variant="ghost">

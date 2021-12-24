@@ -1,6 +1,7 @@
 export const API_URL = process.env.NEXT_PUBLIC_SALEOR_API_URL
 export const API_CHANNEL = process.env.NEXT_PUBLIC_SALEOR_CHANNEL
 export const FEATURED_COLLECTION_ID = process.env.NEXT_PUBLIC_FEATURED_COLLECTION_ID
+export const DOMAIN_NAME = process.env.NEXT_PUBLIC_DOMAIN_NAME
 export const CHECKOUT_ID_COOKIE = 'saleor.CheckoutID'
 export const SALEOR_TOKEN = 'saleor.Token'
 export const SALEOR_CRSF_TOKEN = 'saleor.CSRFToken'
